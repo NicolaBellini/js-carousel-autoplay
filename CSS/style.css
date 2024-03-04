@@ -18,6 +18,7 @@ img{
 }
 
 .main-wrapper{
+  background-color: slategray;
   height: 100vh;
   display: flex;
   justify-content: center;

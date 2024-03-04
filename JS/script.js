@@ -6,7 +6,7 @@ const images = [
    "/assets/consegna/img/05.webp",
 ]
 
-
+const caruselWrapper = document.querySelector(".carusel-canva")
 const itemwrapper = document.querySelector(".carusel-image")
 const tumbWrapper = document.querySelector(".tumb-col")
 
@@ -39,10 +39,35 @@ next.addEventListener("click", showNext)
 // click del bottone sopra
 prev.addEventListener("click", showPrevious)
 
+
+
+// dichiaro la variabile in modo da poterla fermare nella seconda funzione
+let carouselInterval = "";
+
+// Avvia l'autoplay del carosello
+startCarousel();
+
+
+// Aggiungo gli event listener per interrompere/riavviare l'autoplay quando il mouse entra/esce dal carosello
+caruselWrapper.addEventListener("mouseenter", stopCarousel);
+
+caruselWrapper.addEventListener("mouseleave", startCarousel);
+
+
+
 // funtions //
 
-// setInterval (showNext(), 1000 )
+// Funzione per avviare l'autoplay del carosello
+function startCarousel() {
+   carouselInterval = setInterval(showNext, 3000);
+}
 
+// Funzione per fermare l'autoplay del carosello
+function stopCarousel() {
+   clearInterval(carouselInterval);
+}
+
+// funzione per gestire il click del bottone sopra
 function showPrevious(){
    imagesElements[counterItem].classList.add("hide");
    thumbElements[counterItem].classList.remove("active");   
@@ -55,7 +80,7 @@ function showPrevious(){
    thumbElements[counterItem].classList.add("active");
 }
 
-
+// funzione per gestire il click del bottone sotto
 function showNext(){
    imagesElements[counterItem].classList.add("hide");
    thumbElements[counterItem].classList.remove("active");   
